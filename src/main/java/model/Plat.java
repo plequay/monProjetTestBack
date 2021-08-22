@@ -3,29 +3,37 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Plat {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.TABLE)
 	private int id;
 	private String nom;
-	private List<Recette> recettes = new ArrayList();
+	@Enumerated(EnumType.STRING)
 	private Categorie categorie;
 	
 	public Plat() {
 		super();
 	}
 
-	public Plat(String nom, List<Recette> recettes, Categorie categorie) {
+	public Plat(String nom, Categorie categorie) {
 		super();
 		this.nom = nom;
-		this.recettes = recettes;
 		this.categorie = categorie;
 	}
 
-	public Plat(int id, String nom, List<Recette> recettes, Categorie categorie) {
+	public Plat(int id, String nom, Categorie categorie) {
 		super();
 		this.id = id;
 		this.nom = nom;
-		this.recettes = recettes;
 		this.categorie = categorie;
 	}
 
@@ -45,13 +53,6 @@ public class Plat {
 		this.nom = nom;
 	}
 
-	public List<Recette> getRecettes() {
-		return recettes;
-	}
-
-	public void setRecettes(List<Recette> recettes) {
-		this.recettes = recettes;
-	}
 
 	public Categorie getCategorie() {
 		return categorie;
@@ -63,7 +64,7 @@ public class Plat {
 
 	@Override
 	public String toString() {
-		return "Plat [id=" + id + ", nom=" + nom + ", recettes=" + recettes + ", categorie=" + categorie + "]";
+		return "Plat [id=" + id + ", nom=" + nom + ", categorie=" + categorie + "]";
 	}
-	
+
 }
